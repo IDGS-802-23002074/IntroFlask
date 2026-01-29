@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+{% import "_macros.html" as macros %}
+
+{% block content %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='bootstrap-5.0.2-dist/css/cinepolis.css') }}">
+
+<form method="post">
+
+<div class="contenedor">
+
+    <div class="titulo">Cinépolis</div>
+
+    <div class="panel entradas">
+        <h3>Entradas</h3>
+
+        {{ macros.datos("nombre", "", "text") }}
+        {{ macros.datos("compradores", "", "number") }}
+
+        <label>Tarjeta Cinépolis</label>
+        <div class="radio-group">
+            <input type="radio" name="tarjeta" value="si" checked> Sí
+            <input type="radio" name="tarjeta" value="no"> No
+        </div>
+
+        {{ macros.datos("boletos", "", "number") }}
+    </div>
+
+    <div class="panel salidas">
+        <h3>Salidas</h3>
+
+        <label>Valor a Pagar</label>
+        <input type="text" value="{{ total if total else '' }}" readonly>
+    </div>
+
+     
+
+    <div class="panel salidas">
+        {% if error %}
+          <h5>Error: {{ error }} </h5>
+        {% endif %}
+    </div>
+
+    <div class="panel acciones">
+        <button type="submit">Procesar</button>
+        <a href="/" class="btn-salir">Salir</a>
+    </div>
+
+</div>
+
+
+
+</form>
+
+{% endblock %}
+

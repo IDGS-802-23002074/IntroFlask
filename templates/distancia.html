@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% import "_macros.html" as macros %}
+
+<h2>Distancia entre dos puntos</h2>
+
+<form method="post">
+
+    <h5>Punto 1</h5>
+    {{ macros.datos("x1", "Ingrese x1", "number") }}
+    {{ macros.datos("y1", "Ingrese y1", "number") }}
+
+    <h5 class="mt-3">Punto 2</h5>
+    {{ macros.datos("x2", "Ingrese x2", "number") }}
+    {{ macros.datos("y2", "Ingrese y2", "number") }}
+
+    <button type="submit" class="btn btn-primary mt-3">
+        Calcular distancia
+    </button>
+</form>
+
+
+    <h3>Distancia: {{ distancia }} </h3>
+
+{% endblock %}
+

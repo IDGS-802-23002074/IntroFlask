@@ -1,0 +1,79 @@
+body {
+    background-color: #1f3c88;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+.contenedor {
+    width: 900px;
+    margin: auto;
+    padding-top: 30px;
+}
+
+.titulo {
+    text-align: center;
+    font-size: 36px;
+    font-weight: bold;
+    background: #eaeaea;
+    color: #1f3c88;
+    width: 200px;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.panel {
+    border: 2px solid #ccc;
+    padding: 15px;
+    margin-top: 30px;
+}
+
+.entradas {
+    width: 45%;
+    float: left;
+}
+
+.salidas {
+    width: 35%;
+    float: right;
+}
+
+.acciones {
+    clear: both;
+    width: 300px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.panel h3 {
+    margin-top: -25px;
+    background: #1f3c88;
+    width: fit-content;
+    padding: 0 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.radio-group {
+    margin: 10px 0;
+}
+
+button, .btn-salir {
+    padding: 8px 20px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button {
+    background: #eaeaea;
+}
+
+.btn-salir {
+    background: #ccc;
+    text-decoration: none;
+    color: black;
+}
