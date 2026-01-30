@@ -3,6 +3,7 @@ from flask import flash
 from flask_wtf.csrf import CSRFProtect
 
 import forms
+from forms import CinepolisForm
 import math
 
 app = Flask(__name__)
@@ -137,7 +138,7 @@ def distancia():
 
     return render_template("distancia.html", distancia=distancia)
 
-
+"""
 @app.route("/cinepolis", methods=["GET", "POST"])
 def cinepolis():
     total = None
@@ -173,7 +174,46 @@ def cinepolis():
         total=total,
         error=error,
         max_boletos=max_boletos
+    )"""
+
+@app.route("/cinepolis", methods=["GET", "POST"])
+def cinepolis():
+    total = None
+    error = None
+
+    cinepolis_form = CinepolisForm(request.form)
+
+    if request.method == "POST" and cinepolis_form.validate():
+        nombre = cinepolis_form.nombre.data
+        compradores = cinepolis_form.compradores.data
+        boletos = cinepolis_form.boletos.data
+        tarjeta = cinepolis_form.tarjeta.data
+
+        max_boletos = compradores * 7
+
+        if boletos > max_boletos:
+            error = f"No puede comprar más de {max_boletos} boletos."
+        else:
+            precio_boleto = 12
+            subtotal = boletos * precio_boleto
+
+            if boletos > 5:
+                subtotal -= subtotal * 0.15
+            elif boletos >= 3:
+                subtotal -= subtotal * 0.10
+
+            if tarjeta == "si":
+                subtotal -= subtotal * 0.10
+
+            total = round(subtotal, 2)
+
+    return render_template(
+        "cinepolis.html",
+        form=cinepolis_form,
+        total=total,
+        error=error
     )
+
 
 if __name__ == '__main__':
     csrf.init_app(app)

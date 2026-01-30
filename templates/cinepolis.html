@@ -5,7 +5,9 @@
 <link rel="stylesheet"
       href="{{ url_for('static', filename='bootstrap-5.0.2-dist/css/cinepolis.css') }}">
 
-<form method="post">
+<form method="post" novalidate>
+
+    {{ form.hidden_tag() }}
 
 <div class="contenedor">
 
@@ -14,16 +16,12 @@
     <div class="panel entradas">
         <h3>Entradas</h3>
 
-        {{ macros.datos("nombre", "", "text") }}
-        {{ macros.datos("compradores", "", "number") }}
+        {{ macros.campoNuevo(form.nombre, class="form-control") }}
+        {{ macros.campoNuevo(form.compradores, class="form-control") }}
 
-        <label>Tarjeta Cinépolis</label>
-        <div class="radio-group">
-            <input type="radio" name="tarjeta" value="si" checked> Sí
-            <input type="radio" name="tarjeta" value="no"> No
-        </div>
+        {{ macros.campoNuevo(form.tarjeta) }}
 
-        {{ macros.datos("boletos", "", "number") }}
+        {{ macros.campoNuevo(form.boletos, class="form-control") }}
     </div>
 
     <div class="panel salidas">
@@ -33,13 +31,11 @@
         <input type="text" value="{{ total if total else '' }}" readonly>
     </div>
 
-     
-
+    {% if error %}
     <div class="panel salidas">
-        {% if error %}
-          <h5>Error: {{ error }} </h5>
-        {% endif %}
+        <h5>Error: {{ error }}</h5>
     </div>
+    {% endif %}
 
     <div class="panel acciones">
         <button type="submit">Procesar</button>
@@ -48,9 +44,6 @@
 
 </div>
 
-
-
 </form>
 
 {% endblock %}
-
